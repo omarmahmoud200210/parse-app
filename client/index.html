@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>File Name Parser</title>
+    <link rel="stylesheet" href="./style/main.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>📊 Parser</h1>
+        <p>
+          Upload your files and automatically organize data into Excel format
+        </p>
+      </header>
+
+      <div class="main-content">
+        <div class="upload-section">
+          <div class="upload-icon">📁</div>
+          <h2>Drop your files here</h2>
+          <p>Supports bulk upload • Multiple file formats • Fast processing</p>
+          <input type="file" id="fileInput" multiple style="display: none" />
+          <button class="btn-select">Select Files</button>
+        </div>
+        <div class="stats-bar none">
+          <div class="stat-card">
+            <div class="stat-number selected">0</div>
+            <div class="stat-label">Files Selected</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number parsed">0</div>
+            <div class="stat-label">Records Parsed</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number progress">0%</div>
+            <div class="stat-label">Processing Complete</div>
+          </div>
+        </div>
+
+        <div class="file-info none">
+          <h3 class="file-h3">📄 Selected Files <span>(0)</span></h3>
+          <div class="file-grid"></div>
+          <button class="btn-select submit">Parse</button>
+        </div>
+
+        <div class="excel-preview none">
+          <div class="excel-icon">📊</div>
+          <h2>Excel File Ready</h2>
+          <p>
+            Your data has been parsed and organized into an Excel spreadsheet
+          </p>
+
+          <div class="file-details">
+            <div class="detail-item">
+              <div class="detail-label">Format</div>
+              <div class="detail-value">.XLSX</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Records</div>
+              <div class="detail-value records">247</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Size</div>
+              <div class="detail-value size">45 KB</div>
+            </div>
+          </div>
+
+          <div class="status-badge">
+            <div class="status-icon">✓</div>
+            Ready to Download
+          </div>
+        </div>
+
+        <div class="action-buttons none">
+          <button class="btn-download">
+            <span class="icon">⬇</span>
+            <a href="/download" class="download">Download Excel File</a>
+          </button>
+          <button class="btn-clear">Clear All & Start Over</button>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
