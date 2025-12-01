@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3000";
+const API_URL = "";
 
 const httpFilesData = async (data) => {
   try {
@@ -9,7 +9,7 @@ const httpFilesData = async (data) => {
       },
       body: JSON.stringify(data),
     });
-    
+
     if (!res.ok) throw new Error(`Server responded ${res.status}`);
     return await res.json();
   } catch (err) {
@@ -17,11 +17,13 @@ const httpFilesData = async (data) => {
   }
 };
 
-const httpDownloadExcelSheet = async (anchor) => {
+const httpDownloadExcelSheet = async (anchor, id) => {
   try {
-    const response = await fetch(`${API_URL}/download`, { method: "get" });
+    const response = await fetch(`${API_URL}/download?id=${id}`, {
+      method: "get",
+    });
 
-    if (!response) throw new Error("Downalod failed!!");
+    if (!response.ok) throw new Error("Download failed!!");
 
     const arrBuffer = await response.arrayBuffer();
     const blob = new Blob([arrBuffer], {
@@ -39,9 +41,9 @@ const httpDownloadExcelSheet = async (anchor) => {
   }
 };
 
-const httpGetExcelFileSize = async () => {
+const httpGetExcelFileSize = async (id) => {
   try {
-    const resp = await fetch(`${API_URL}/files`, { method: "get" });
+    const resp = await fetch(`${API_URL}/files?id=${id}`, { method: "get" });
     const body = await resp.json();
 
     return body.length;
@@ -50,9 +52,9 @@ const httpGetExcelFileSize = async () => {
   }
 };
 
-const httpClearServer = async () => {
+const httpClearServer = async (id) => {
   try {
-    await fetch(`${API_URL}/files`, { method: "delete" });
+    await fetch(`${API_URL}/files?id=${id}`, { method: "delete" });
   } catch (err) {
     console.log(err);
   }

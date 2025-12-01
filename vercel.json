@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "rewrites": [
+    {
+      "source": "/files",
+      "destination": "/server/app.js"
+    },
+    {
+      "source": "/download",
+      "destination": "/server/app.js"
+    },
+    {
+      "source": "/",
+      "destination": "/client/index.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/client/$1"
+    }
+  ]
+}

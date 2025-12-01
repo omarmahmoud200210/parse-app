@@ -83,6 +83,13 @@ header p {
   margin-bottom: 20px;
 }
 
+.upload-section .note {
+  color: #217346;
+  font-size: 14px;
+  margin-top: -10px;
+  font-weight: 500;
+}
+
 .btn-select {
   background: #217346;
   color: white;
