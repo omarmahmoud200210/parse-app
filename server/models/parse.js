@@ -22,40 +22,50 @@ let parsed = {};
 
 const handleParsing = (files) => {
   files.forEach((file) => {
-    const parse = file.name.split("-");
+    try {
+      const parse = file.name.split("-");
 
-    const documentNo = file.name;
-    const revision = Number(parse[parse.length - 1].split(".").shift());
-    const title = levels[parse[5]] + "plan";
-    const typeDWG = types[parse[7]];
-    const statusDWG = status[parse[9]];
-    const diciplineDWG = dicipline[parse[6]];
-    const projectStage = "Gateway 6 - Detailed Design"; // Will check aconex for that..
-    const project = "MOEg Business Park";
-    const workingPackage = workingPackages[parse[3]];
-    const zone = buidlings[parse[4].split(".").join("")];
-    const level = levels[parse[5]];
-    const createdBy = organizations[parse[2]];
-    const extenstion = file.type;
+      if (parse.length !== 11) {
+        console.error(`Skipping invalid file format: ${file.name}`);
+        return;
+      }
 
-    const parsedData = {
-      documentNo,
-      revision,
-      title,
-      typeDWG,
-      statusDWG,
-      diciplineDWG,
-      projectStage,
-      project,
-      workingPackage,
-      zone,
-      level,
-      createdBy,
-      extenstion,
-      dateCreated: new Date().toLocaleDateString(),
-    };
+      const documentNo = file.name;
+      const revision = Number(parse[parse.length - 1].split(".").shift());
+      const title = `${levels[parse[5]]} plan`.toUpperCase();
+      const typeDWG = types[parse[7]];
+      const statusDWG = status[parse[9]];
+      const diciplineDWG = dicipline[parse[6]];
+      const projectStage = "Gateway 6 - Detailed Design"; // Will check aconex for that..
+      const project = "MOEg Business Park";
+      const workingPackage = workingPackages[parse[3]];
+      const zone = buidlings[parse[4].split(".").join("")];
+      const level = levels[parse[5]];
+      const createdBy = organizations[parse[2]];
+      const extenstion = file.type;
 
-    parsed[file.name] = parsedData;
+      const parsedData = {
+        documentNo,
+        revision,
+        title,
+        typeDWG,
+        statusDWG,
+        diciplineDWG,
+        projectStage,
+        project,
+        workingPackage,
+        zone,
+        level,
+        createdBy,
+        extenstion,
+        dateCreated: new Date().toLocaleDateString(),
+      };
+
+      parsed[file.name] = parsedData;
+    }
+    catch (error) {
+      console.error(`Error parsing file ${file.name}:`, error);
+    }
   });
 
   return parsed;
