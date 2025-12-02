@@ -23,7 +23,7 @@ const handleFiles = (e) => {
   for (let file of fileList) {
     let extension = file.name.split(".").pop().toLowerCase();
 
-    if (file.name.split("-").length !== 11) {
+    if (file.name.split("-").length > 11) {
       alert("Invalid file format");
       return;
     }

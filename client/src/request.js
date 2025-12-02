@@ -36,7 +36,8 @@ const httpDownloadExcelSheet = async (anchor, id) => {
     anchor.click();
 
     setTimeout(() => URL.revokeObjectURL(url), 1500);
-  } catch (err) {
+  }
+  catch (err) {
     console.log(err);
   }
 };

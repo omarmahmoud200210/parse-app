@@ -14,7 +14,7 @@ setInterval(() => {
   }
 }, CLEANUP_INTERVAL);
 
-const uploadFiles = async (req, res) => {
+const uploadFiles = async (req, res) => { 
   try {
     const workbook = new Exceljs.Workbook();
     const sheet = workbook.addWorksheet("bulk");
