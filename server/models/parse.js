@@ -25,7 +25,7 @@ const handleParsing = (files) => {
     try {
       const parse = file.name.split("-");
 
-      if (parse.length !== 11) {
+      if (parse.length > 11) {
         console.error(`Skipping invalid file format: ${file.name}`);
         return;
       }
